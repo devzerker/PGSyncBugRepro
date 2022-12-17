@@ -1,0 +1,39 @@
+[
+    {
+        "database": "postgres",
+        "index": "clients",
+        "nodes": {
+            "table": "clients",
+            "schema": "public",
+            "children": [
+                {
+                    "table": "calls",
+                    "schema": "public",
+                    "relationship": {
+                        "variant": "object",
+                        "type": "one_to_many",
+                        "foreign_key": {
+                            "child": ["from_id"],
+                            "parent": ["id"]
+                        }
+                    },
+                    "children": [
+                        {
+                            "table": "clients",
+                            "schema": "public",
+                            "label": "to",
+                            "relationship": {
+                                "variant": "object",
+                                "type": "one_to_one",
+                                "foreign_key": {
+                                    "child": ["id"],
+                                    "parent": ["to_id"]
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+]
